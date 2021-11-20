@@ -1,36 +1,35 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: springboot-postgres-example
+  name: spring-boot-postgres-sample
   namespace: default
 spec:
   selector:
-    matchlabels:
-      app: springboot-postgres-example
+    matchLabels:
+      app: spring-boot-postgres-sample
   replicas: 1
   template:
     metadata:
-      name: springboot-postgres-example
+      name: spring-boot-postgres-sample
       labels:
-        app: springboot-postgres-example
+        app: spring-boot-postgres-sample
     spec:
       containers:
-      - name: springboot-postgres-example
+      - name: spring-boot-postgres-sample
         env:
           - name: POSTGRES_USER
             valueFrom:
               secretKeyRef:
-                name: postgres-secrets
-                key: username
+                 name: postgres-secrets
+                 key: username
           - name: POSTGRES_PASSWORD
             valueFrom:
               secretKeyRef:
-                name: postgres-secrets
-                key: password
+                 name: postgres-secrets
+                 key: password
           - name: POSTGRES_HOST
             valueFrom:
-              configMapRef:
+              configMapKeyRef:
                 name: hostname-config
                 key: postgres_host
         image: balamuragan/springboot:latest
