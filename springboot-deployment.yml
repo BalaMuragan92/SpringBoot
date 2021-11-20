@@ -16,6 +16,8 @@ spec:
     spec:
       containers:
       - name: spring-boot-postgres-sample
+        command: [ "sleep" ]
+        args: [ "infinity" ]
         env:
           - name: POSTGRES_USER
             valueFrom:
